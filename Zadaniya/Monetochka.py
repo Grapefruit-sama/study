@@ -14,5 +14,5 @@ while podbrasivanii != 100:
         orel += 1
     elif monetka == 2:
         reshka += 1
-print('Орлов - ', orel, 'Решек - ', reshka,)
+print(f'Орлов - {orel} Решек - {reshka}')
 input('')
