@@ -89,4 +89,4 @@ print('Вы забираете содержимое')
 inventory += chest
 print('Теперь в вашем распоряжении: ')
 print(inventory)
-input("\nHaжмитe Enter. чтобы продолжить.\n")
+input("\nHaжмитe Enter. чтобы выйти.\n")
