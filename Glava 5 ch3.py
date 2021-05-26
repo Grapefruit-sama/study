@@ -72,3 +72,64 @@ else:
 
 # Доступ к значениям с помощью метода get()
 print(geek.get('Dancing Baloney', 'Понятия не имею'))
+
+choice = None
+while choice != '0':
+    print('''
+    Переводчик с гикского на русский
+    0 - Выйти
+    1 - Найти толкование термина
+    2 - Добавить термин
+    3 - Изменить толкование
+    4 - Удалить термин
+    ''')
+    choice = input('Ваш выбор: ')
+    print()
+    # Выход
+    if choice == '0':
+        print('До свидания.')
+
+    # поиск толкования
+    elif choice == '1':
+        term = input('Какой термин вы хотите перевести с гикского на русский? ')
+        if term in geek:
+            definition = geek[term]
+            print(f'\n {term} означает {definition}')
+        else:
+            print('\nУвы этот термин мне не знаком')
+
+    # Добовление термина с тлкованием
+    elif choice == '2':
+        term = input('Какой термин гикского языка вы хотите добавить? ')
+        if term not in geek:
+            definition = input('\nВпишите ваше толкование')
+            geek[term] = definition
+            print(f'\nТермин {term} добавлен в словарь')
+        else:
+            print('\nТакой термин уже есть в словаре')
+
+    # изменение значения в словаре
+    elif choice == '3':
+        term = input('Какой термин гикского языка вы хотите изменить? ')
+        if term in geek:
+            definition = input('\nВпишите ваше толкование')
+            geek[term] = definition
+            print(f'\nТермин {term} изменен')
+        else:
+            print('\nТакого термина пока нет!')
+
+    # удаление термина
+    elif choice == '4':
+        term = input('Какой термин гикского языка вы хотите удалить? ')
+        if term in geek:
+            del geek[term]
+            print(f'\nТермин {term} удален')
+        else:
+            print('\nТакого термина пока нет!')
+
+    # Непонятный пользовательский ввод
+    else:
+        print(f'Извините, в меню нет пункта {choice}')
+
+# Конец программы
+input("\nНажмите Enter. чтобы выйти.")
