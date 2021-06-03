@@ -8,7 +8,10 @@ family = {'Саня': 'Федор Анатольевич',
           'Джорно': 'Михаил Петрович',
           'Мордред': 'Артур Утерович',
           'Федя': 'Иван Ибрагимович',
-          'Камил': 'Азим Колымбекович', }
+          'Камил': 'Азим Колымбекович',
+          'Артур Утерович': 'Тор Одинович',
+          'Иван Ибрагимович': 'Тор Одинович',
+          'Азим Колымбекович': 'Карна Сансарович', }
 choice = None
 while choice != 0:
     print('''
@@ -31,6 +34,11 @@ while choice != 0:
         if son in family:
             father = family[son]
             print(f'\n Отец {son} - {father}')
+            if father in family:
+                grandfather = family[father]
+                print(f'\n Дед {son} - {grandfather}')
+            else:
+                pass
         else:
             print('\nУвы этот человек мне не знаком')
 
