@@ -4,6 +4,25 @@
 # или попало в точку
 
 import random
+
+from typing import (
+    List,
+    Union,
+    NoReturn,
+)
+
+
+def ask_number(question: int, low: int, high: int) -> int:
+    """ Просит ввести число из диапазона. """
+    
+    response = None
+    
+    while response not in range(low, high):
+        response = int(input(question))
+    return response
+
+
+
 print("\tДобро пожаловать в игру 'Отгадай число'!")
 print("\nЯ загадал натуральное число из диапазона от 1 до 10.")
 print("Постарайтесь отгадать его за 5 попыток.\n")

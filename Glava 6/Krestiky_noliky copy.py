@@ -39,10 +39,10 @@ def ask_yes_no(question):
     return response
 
 
-def ask_number(question, low, high, step=1):
+def ask_number(question, low, high):
     """Просит ввести число из диапазона"""
     response = None
-    while response not in range(low, high, step):
+    while response not in range(low, high):
         response = int(input(question))
     return response
 
