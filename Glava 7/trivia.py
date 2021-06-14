@@ -3,6 +3,7 @@
 # вопросы которой читаются из текстового файла
 
 import sys
+import pickle
 
 from typing import (
     NoReturn,
@@ -67,6 +68,32 @@ def welcome(title: str) -> NoReturn:
     print(f'\t\t{title}\n')
 
 
+def write_record(score: int) -> NoReturn:
+    """ Записывает рекорд с именем и очками в файл. """
+
+    name = input('Введите имя: ')
+
+    record = []
+    record.append(name)
+    record.append(score)
+    record_list = open('Glava 7\\record_list.dat', 'ab')
+    pickle.dump(record, record_list)
+    record_list.close()
+
+
+def display_record() -> NoReturn:
+    """ Отображает список рекордов из файла"""
+    record_list = open('Glava 7\\record_list.dat', 'rb')
+    records = []
+    while records != str:
+        try:
+            records = pickle.load(record_list)
+            print(records)
+        except EOFError:
+            break
+    record_list.close()
+
+
 def main():
     trivia_file = open_file('Glava 7\\trivia.txt', 'r')
     title = next_line(trivia_file)
@@ -95,6 +122,16 @@ def main():
     trivia_file.close()
     print('Это был последний вопрос!')
     print('На вашем счету', score)
+    y_or_n = input('Хотите ли вы записать рекорд? (y/n): ')
+    if y_or_n == 'y':
+        write_record(score)
+    else:
+        pass
+    y_or_n = input('Хотите ли вы посмотреть список рекордов? (y/n): ')
+    if y_or_n == 'y':
+        display_record()
+    else:
+        pass
 
 
 main()
