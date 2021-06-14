@@ -43,8 +43,21 @@ def next_block(the_file: IO) -> Union[str, list]:
     correct = next_line(the_file)
     if correct:
         correct = correct[0]
+    denomination = next_line(the_file)
     explanation = next_line(the_file)
-    return category, question, answers, correct, explanation
+    return category, question, answers, correct, denomination, explanation
+
+
+def par(denomination: str) -> int:
+    """ Переводит строку `denomination` в int. """
+
+    digit = '1234567890'
+    point = ''
+    for number in denomination:
+        if number in digit:
+            point += number
+    point = int(point)
+    return point
 
 
 def welcome(title: str) -> NoReturn:
@@ -60,10 +73,11 @@ def main():
     welcome(title)
     score = 0
     # Извлечение первого блока
-    category, question, answers, correct, explanation = next_block(trivia_file)
+    category, question, answers, correct, denomination, explanation = next_block(trivia_file)
     while category:
         print(category)
         print(question)
+        print('Вопрос наминалом в :', denomination)
         for i in range(4):
             print(f'\t {i + 1} - {answers[i]}')
         # Получение ответа
@@ -71,13 +85,13 @@ def main():
         # проверка ответа
         if answer == correct:
             print("\nДа!", end=" ")
-            score += 1
+            score += par(denomination)
         else:
             print("\nНет не верно", end=" ")
         print(explanation)
         print(f'Счет {score} \n\n')
         # переход к следующему вопросу
-        category, question, answers, correct, explanation = next_block(trivia_file)
+        category, question, answers, correct, denomination, explanation = next_block(trivia_file)
     trivia_file.close()
     print('Это был последний вопрос!')
     print('На вашем счету', score)
