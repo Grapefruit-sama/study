@@ -72,25 +72,18 @@ def write_record(score: int) -> NoReturn:
     """ Записывает рекорд с именем и очками в файл. """
 
     name = input('Введите имя: ')
-
-    record = []
-    record.append(name)
-    record.append(score)
-    record_list = open('Glava 7\\record_list.dat', 'ab')
-    pickle.dump(record, record_list)
+    
+    score = str(score)
+    record = name + ' ' + score + '\n'
+    record_list = open('Glava 7\\record_list.txt', 'a+')
+    record_list.write(record)
     record_list.close()
 
 
 def display_record() -> NoReturn:
     """ Отображает список рекордов из файла"""
-    record_list = open('Glava 7\\record_list.dat', 'rb')
-    records = []
-    while records != str:
-        try:
-            records = pickle.load(record_list)
-            print(records)
-        except EOFError:
-            break
+    record_list = open('Glava 7\\record_list.txt', 'r')
+    print(record_list.read())
     record_list.close()
 
 
