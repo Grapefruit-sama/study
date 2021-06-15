@@ -3,7 +3,8 @@
 # вопросы которой читаются из текстового файла
 
 import sys
-import pickle
+
+from pathlib import Path
 
 from typing import (
     NoReturn,
@@ -75,20 +76,20 @@ def write_record(score: int) -> NoReturn:
     
     score = str(score)
     record = name + ' ' + score + '\n'
-    record_list = open('Glava 7\\record_list.txt', 'a+')
+    record_list = open(Path("Glava 7", "record_list.txt"), 'a+')
     record_list.write(record)
     record_list.close()
 
 
 def display_record() -> NoReturn:
     """ Отображает список рекордов из файла"""
-    record_list = open('Glava 7\\record_list.txt', 'r')
+    record_list = open(Path("Glava 7", "record_list.txt"), 'r')
     print(record_list.read())
     record_list.close()
 
 
 def main():
-    trivia_file = open_file('Glava 7\\trivia.txt', 'r')
+    trivia_file = open_file(Path("Glava 7", "trivia.txt"), 'r')
     title = next_line(trivia_file)
     welcome(title)
     score = 0
