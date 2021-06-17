@@ -89,6 +89,7 @@ def main():
     title = next_line(trivia_file)
     welcome(title)
     score = 0
+
     # Извлечение первого блока
     category, question, answers, correct, denomination, explanation = next_block(trivia_file)
     while category:
